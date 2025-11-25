@@ -1,55 +1,29 @@
 import React, { useEffect, useState } from "react";
-import Pessoa from '../../../components/pessoa/Pessoa'
 
 function Home() {
-  
-  //VARIAVEL PESSOA 
-                  //ATRIBUICAO DE PESSOA
-                                //RECARREGA PESSOA VISUALMENTE (RERESH)
-                                      // [] = ARRAY OU LISTA VAZIA
-   const [pessoas, setPessoa] = useState([]);
+  // Estado para armazenar a mensagem
+  const [mensagem, setMensagem] = useState("");
 
-   //JAVASCRIPT
-   //useEffect - AO ABRIR A TELA EXECUTE TAL COISA 
-   useEffect(() => { 
-   
-  }, []);
-
-
-  function chamarServidor(){
-
-     var idade = 50;
-    //SOMENTE REQUISIÇÕES GET
-    var enderecoBackEnd = "http://localhost:5000/exbirCarroBanco?filtro=" + idade;
-    var enderecoBackEnd2 = "http://localhost:5000/exbirCarroBanco?filtro=${idade}";
-
-    fetch("http://localhost:5000/exbirCarroBanco")
+  // Função para chamar o servidor
+  function chamarServidor() {
+    fetch("http://localhost:5000/mensagem")
       .then((resposta) => resposta.json())
 
       .then((resultadoDoBackend) => {
-        setPessoa(resultadoDoBackend.mensagem);
-
-      }).catch(() => setPessoa([]));
+        setMensagem(resultadoDoBackend.mensagem);
+      })
+      
+      .catch(() => setMensagem("Erro ao buscar mensagem"));
   }
- 
+
   return (
-    //HTML
+    // HTML
     <div>
       <h1>teste</h1>
-      <button onClick={chamarServidor}> CHAMAR SERVIDOR</button>
-        {
-          // JAVASCRIPT
-          // LAÇOS DE REPETIÇÃO
-              //  PERCORRE A LISTA JA TRAZENDO A INFORMAO SEM CONTADOR
-                //  lista.map( (pessoa) => () )
-                  pessoas.map( (posicao) => (
+      <button onClick={chamarServidor}>CHAMAR SERVIDOR</button>
 
-                     <Pessoa nome={posicao.tx_nome} 
-                            idade={posicao.nr_ano} 
-                            documento={posicao.nr_documento}
-                      />
-                  ))
-        }
+      
+      <p>{mensagem}</p>
     </div>
   );
 }
