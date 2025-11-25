@@ -146,6 +146,13 @@
 
 ## Documentação Frontend
 
+1. Acesse o diretório do projeto front-end.
+2. Execute o comando abaixo para instalar as dependências:
+
+    ```bash
+    npm install
+    ```
+
 ### Requisição
 
 1. **Exemplo de Requisição GET com Parâmetro**
