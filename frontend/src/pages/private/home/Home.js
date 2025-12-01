@@ -6,7 +6,7 @@ function Home() {
 
   // Função para chamar o servidor
   function chamarServidor() {
-    fetch("http://localhost:5000/mensagem")
+    fetch("http://localhost:80/mensagem")
       .then((resposta) => resposta.json())
 
       .then((resultadoDoBackend) => {
