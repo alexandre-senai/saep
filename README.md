@@ -326,13 +326,5 @@
 
    
 
-   docker build -t sapp .
-
-   docker save -o backend.tar sapp
-
-   >scp -i ssh-key-2025-10-28.key backend.tar ubuntu@144.22.146.92:/home/ubuntu/sap/backend.tar
-backend.tar             
-
-docker load -i backend.tar
-
- docker run -d   --name sapp   --network minha-rede   -p 8080:80   sapp
+docker-compose build
+docker-compose up -d
